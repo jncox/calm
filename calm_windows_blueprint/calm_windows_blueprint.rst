@@ -14,7 +14,7 @@ Overview
 
 .. _unattended XML answer file: https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/use-answer-files-with-sysprep
 
-Up to this point, we've been working with Linux based User VMs, and consequently, SSH.  We'll now explore deploying a Windows based VM, and modifying them with a Powershell script natively via Nutanix Calm.
+Up to this point, we've been working with Linux based User VMs, and consequently, SSH.  We'll now explore deploying a Windows based VM, and modifying it with a Powershell script, all natively via Nutanix Calm.
 
 Creating Blueprint (Windows)
 ++++++++++++++++++++++++++++
@@ -40,6 +40,7 @@ Click **Credentials >** :fa:`plus-circle` and enter **both** of the following cr
 - **Username** - Administrator
 - **Secret** - Password
 - **Key** - nutanix/4u
+
 
 - **Credential Name** - DOMAIN_CRED
 - **Username** - Administrator
@@ -186,6 +187,9 @@ Fill out the following fields:
 
 Click **Save** and ensure no errors or warnings pop-up.  If they do, resolve the issue, and **Save** again.
 
+Package Install
+...............
+
 With the Windows10 service icon selected in the workspace window, scroll to the top of the **Configuration Panel**, click **Package**.  Name the Package as **WIN_PACKAGE**, and then click the **Configure install** button.
 
 On the Blueprint Canvas section, a **Package Install** field will pop up next to the Windows10 Service tile:
@@ -261,6 +265,9 @@ Copy and paste the following script into the **Script** field:
 .. note::
    Looking at the script you can see a function that sets the VM's hostname if it is not already set, a function that joins the computer to the domain specified via our macro and credentials that we set earlier, and finally restarts the user VM so the domain join takes affect.
 
+Package Uninstall
+.................
+
 Select the Windows10 service icon in the workspace window again and scroll to the top of the **Configuration Panel**, click **Package**.
 
 - **Click** - Configure Uninstall
@@ -307,6 +314,9 @@ Copy and paste the following script into the **Script** field:
 
 Click **Save**. You will be prompted with specific errors if there are validation issues such as missing fields or unacceptable characters.
 
+Blueprint Launch and Verification
++++++++++++++++++++++++++++++++++
+
 Launching the Blueprint
 .......................
 
@@ -318,11 +328,14 @@ Click **Create**.
 
 You will be taken directly to the **Applications** page to monitor the provisioning of your Blueprint.
 
-Select **Audit > Create** to view the progress of your application. After **Windows10_AHV - Check Login** is complete, select the **JoinDomain** task to view the output of our domain join script.
+Select **Audit > Create** to view the progress of your application. You'll likely notice that the **Windows10_AHV - Check Login** takes some time to complete, as not only do we have to wait for the VM to power on, we have to wait for it to get Sysprepped with our Unattended XML file.  Once the login task is complete, select the **JoinDomain** task to view the output of our domain join script.
 
 Note the status changes to **Running** after the Blueprint has been successfully provisioned.
 
 .. figure:: images/windows6.png
+
+Verification
+............
 
 Once the application is in a **Running** state, click on the **Services** tab, then select the **Windows10** service.  On the pane that opens to the right, copy the **Name** of the VM (it should be named something like Win-0-123456-789012).  Next, click on the **Explore** tab at the very top of Prism Central, ensure **VMs** is selected on the left side, and paste in the name of your VM to filter.
 
