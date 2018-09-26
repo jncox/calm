@@ -10,8 +10,9 @@ Overview
 .. note::
 
   This blueprint does assume some basic Microsoft Sysprep knowledge, specifically around an `unattended XML answer file`_.
-  .. _unattended XML answer file: https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/use-answer-files-with-sysprep
   Estimated time to complete: **60 MINUTES**
+
+.. _unattended XML answer file: https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/use-answer-files-with-sysprep
 
 Up to this point, we've been working with Linux based User VMs, and consequently, SSH.  We'll now explore deploying a Windows based VM, and modifying them with a Powershell script natively via Nutanix Calm.
 
@@ -29,13 +30,11 @@ Specify **Windows<INITIALS>** in the **Blueprint Name** field.
 Enter a **Description** in the Description field.
 Select **Calm** from the **Project** drop down menu and click **Proceed**.
 
-Click **Proceed** to continue.
-
 Click **Credentials >** :fa:`plus-circle` and enter **both** of the following credentials:
 
 .. note::
 
-  You'll likely notice that both credentials have the same username and password.  For this reason, we technically could use a single credential.  However, in the real world it is extremely unlikely (and a security concern) that both your User VMs and your Domain credentials are the exact same.  For that reason, we'll leave them seperate to make this Blueprint more portable.
+  You'll likely notice that both credentials have the same username and password.  For this reason, we technically could use a single credential.  However, in the real world it is extremely unlikely (and unwise) that both your User VMs and your Domain credentials are the exact same.  For that reason, we'll leave them seperate to make this Blueprint more portable.
 
 - **Credential Name** - WIN_VM_CRED
 - **Username** - Administrator
@@ -54,7 +53,7 @@ Click **Save**, and then **Back**.
 Setting Variables
 .................
 
-As we've seen in previous labs, variables improve the extensibility of Blueprints.  For this Blueprint, we'll want to define the domain name that the Windows VM will join to, and the IP of the Active Directory server.  We'll leave both the **Secret** and **Runtime** variables un-checked.
+As we've seen in previous labs, variables improve the extensibility of Blueprints.  For this Blueprint, we'll want to define the domain name that the Windows VM will join to, and the IP of the Active Directory server.  We'll leave both the **Secret** and **Runtime** variables **un-checked**.
 
 In the **Configuration Pane** under **Variable List**, fill out the following fields:
 
@@ -75,7 +74,7 @@ Adding Windows Service
 
 In **Application Overview > Services**, click :fa:`plus-circle`.
 
-Note **Service1** appears in the **Workspace** and the **Configuration Pane** reflects the configuration of the selected Service.
+Note that **Service1** appears in the **Workspace** and the **Configuration Pane** reflects the configuration of the selected Service.
 
 Fill out the following fields:
 
@@ -199,7 +198,7 @@ Click on the **+ Task** button, and fill out the following fields on the **Confi
 
 Copy and paste the following script into the **Script** field:
 
-.. code-block:: bash
+.. code-block:: powershell
 
    $HOSTNAME = "Win-@@{calm_unique}@@"
    
@@ -270,7 +269,7 @@ Select the Windows10 service icon in the workspace window again and scroll to th
 
 Copy and paste the following script into the **Script** field:
 
-.. code-block:: bash
+.. code-block:: powershell
 
    $HOSTNAME = "Win-@@{calm_unique}@@"
    
@@ -330,15 +329,14 @@ Next, select your VM as shown above, then click the **Actions** button near the 
 
 .. figure:: images/windows8.png
 
+At this point you're welcome to run the **Delete** action to clean up your application and underlying VM.  Alternatively, you could run the **Soft Delete** action, which deletes the application from Calm's point of view, but **leaves** the underlying VM(s) up and running.  This is useful when the VM will be used and managed perpetually by an end user, and isn't needed to be managed by Calm.
+
 Takeaways
 +++++++++
 
-- The Blueprint Editor provides a simple UI for modeling potentially complex applications.
-- Blueprints are tied to SSP Projects which can be used to enforce quotas and role based access control.
-- Having a Blueprint install and configure binaries means no longer creating specific images for individual applications. Instead the application can be modified through changes to the Blueprint or installation script, both of which can be stored in source code repositories.
-- Variables allow another dimension of customizing an application without having to edit the underlying Blueprint.
-- There are multiple ways of authenticating to a VM (keys or passwords), which is dependent upon the source image.
-- Application status can be monitored in real time.
+- In addition to Linux VM management with shell scripts, Nutanix Calm can natively manage Windows VMs via Powershell and Sysprep.
+- Although the labs have focused solely on either Linux or Windows, Calm also supports managing different OSes within the same blueprint.  You can even manage VMs on different clouds, all within the same blueprint.
+- Calm's system defined **Soft Delete** action allows you to delete an application from Calm, without affecting the underlying VMs, which is useful for Jumpboxes and Developer workstations. 
 
 .. |proj-icon| image:: ../images/projects_icon.png
 .. |mktmgr-icon| image:: ../images/marketplacemanager_icon.png
