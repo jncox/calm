@@ -173,6 +173,9 @@ Fill out the following fields:
         </settings>
      </unattend>
 
+  .. note::
+     This Unattended XML answer file will set some basic computer information such as hostname and organization, configure the Administrator password to our WIN_VM_CRED secret, open Powershell port 5985 in the firewall, and enable remote Powershell functionality.
+
   .. figure:: images/windows3.png
 
 - Select :fa:`plus-circle` under **Network Adapters (NICs)**
