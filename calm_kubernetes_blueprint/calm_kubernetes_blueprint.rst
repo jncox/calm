@@ -120,7 +120,8 @@ Using Kubernetes BP v2.0.0
 
 - login to controller0 to execute ``kubectl get no``
 
-download blueprint HERE 
+download blueprint :download:`HERE <./k8s-bp-2.0.json>`
+
 
 Using Kubernetes BP v1.0.0
 ++++++++++++++++++++++++++
