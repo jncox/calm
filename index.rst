@@ -21,6 +21,7 @@
   calm_3twa_blueprint/calm_3twa_blueprint
   calm_windows_blueprint/calm_windows_blueprint
   calm_marketplace/calm_marketplace
+  calm_kubernetes_blueprint/calm_kubernetes_blueprint
 
 .. toctree::
   :maxdepth: 2
