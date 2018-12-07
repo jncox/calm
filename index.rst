@@ -61,17 +61,19 @@ Agenda
 ++++++
 
 - Nutanix Calm
-  * - What Is Calm
-  * - Selling Calm
+    - What Is Calm
+    - Selling Calm
+
 - Nutanix Calm Labs
-  * - Calm: Projects
-  * - Calm: MySQL Blueprint
-  * - Calm: 3-Tier Web-App Blueprint
-  * - Calm: Windows Blueprint
-  * - Calm: Marketplace
+    - Calm: Projects
+    - Calm: MySQL Blueprint
+    - Calm: 3-Tier Web-App Blueprint
+    - Calm: Windows Blueprint
+    - Calm: Marketplace
+
 - Optional Labs
-  * - Calm: Enable
-  * - Calm: SSH Key Creation
+    - Calm: Enable
+    - Calm: SSH Key Creation
 
 Introductions
 +++++++++++++
