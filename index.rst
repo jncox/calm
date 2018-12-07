@@ -16,9 +16,10 @@
   :name: _nutanix_calm_lab
   :hidden:
 
-  calm_enable/calm_enable
+  calm_projects/calm_projects
   calm_mysql_blueprint/calm_mysql_blueprint
-  calm_lamp_blueprint/calm_lamp_blueprint
+  calm_3twa_blueprint/calm_3twa_blueprint
+  calm_windows_blueprint/calm_windows_blueprint
   calm_marketplace/calm_marketplace
 
 .. toctree::
@@ -26,6 +27,9 @@
   :caption: Optional Labs
   :name: _optional_labs
   :hidden:
+
+  calm_enable/calm_enable
+  calm_sshkey_creation/calm_sshkey_creation
 
 .. toctree::
   :maxdepth: 2
@@ -48,8 +52,7 @@ What's New
 ++++++++++
 
 - Workshop updated for the following software versions:
-    - AOS 5.6
-    - PC 5.7.1
+    - AOS & PC 5.10
 
 - Optional Lab Updates:
 
@@ -57,10 +60,17 @@ Agenda
 ++++++
 
 - Nutanix Calm
-- Nutanix Calm Lab
+  * - What Is Calm
+  * - Selling Calm
+- Nutanix Calm Labs
+  * - Calm: Projects
+  * - Calm: MySQL Blueprint
+  * - Calm: 3-Tier Web-App Blueprint
+  * - Calm: Windows Blueprint
+  * - Calm: Marketplace
 - Optional Labs
-  - Lab
-  - Lab
+  * - Calm: Enable
+  * - Calm: SSH Key Creation
 
 Introductions
 +++++++++++++
